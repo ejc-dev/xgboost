@@ -172,7 +172,7 @@ def allreduce(data, op, prepare_fun=None):
     if not isinstance(data, np.ndarray):
         raise Exception('allreduce only takes in numpy.ndarray')
     buf = data.ravel()
-    if buf.base is data.base:
+    if buf.base is data.values.base:
         buf = buf.copy()
     if buf.dtype not in DTYPE_ENUM__:
         raise Exception('data type %s not supported' % str(buf.dtype))
